@@ -11,15 +11,17 @@ function App() {
         .map((item) => item.trim())
         .filter((item) => item !== "");
 
-      const response = await fetch("http://localhost:3000/bfhl", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ data }),
-      });
+      const response = await fetch(
+        "https://chitkara-full-stack-challenge.onrender.com/bfhl",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data }),
+        }
+      );
 
-      // Check API response
       if (!response.ok) {
         throw new Error("API returned an error");
       }
@@ -27,7 +29,6 @@ function App() {
       const json = await response.json();
 
       console.log("API Response:", json);
-
       setResult(json);
     } catch (error) {
       console.error("Frontend Error:", error);
